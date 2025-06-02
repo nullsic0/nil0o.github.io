@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyball Pro - カスタムキーボードケース </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #E5E7EB; /* Light gray text for dark theme (gray-200) */
+            background-color: #000000; /* Base background black */
+        }
+        .hero-bg {
+            background-image: linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.5)), url('https://placehold.co/1920x1080/000000/E5E7EB?text=洗練された金属ケースのイメージ');
+            background-size: cover;
+            background-position: center;
+        }
+        .section-title {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            font-weight: 600; /* Adjusted font weight for a softer look */
+            color: #F9FAFB; /* Lighter text for titles (gray-50) */
+        }
+        .feature-icon {
+            width: 2.25rem; /* 36px - slightly smaller */
+            height: 2.25rem; /* 36px */
+            margin-bottom: 1rem;
+            color: #9CA3AF; /* gray-400 for icons, less prominent */
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -0.5rem; /* Adjusted for smaller dot */
+            top: 0.5rem;
+            width: 1rem; /* 16px */
+            height: 1rem; /* 16px */
+            border-radius: 50%;
+            background-color: #4B5563; /* gray-600 */
+            border: 3px solid #111827; /* gray-900 */
+        }
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 1.5rem; /* Adjusted */
+            bottom: -1rem; /* Adjusted */
+            width: 2px; /* Thinner line */
+            background-color: #374151; /* gray-700 */
+        }
+        .cta-button { /* Renamed from apple-button */
+            background-color: #27272a; /* Zinc 800 - dark gray, almost black */
+            color: #e4e4e7; /* Zinc 200 - light gray text */
+            font-weight: 500; /* Medium weight */
+            padding: 0.625rem 1.25rem; /* 10px 20px */
+            border-radius: 0.5rem; /* 8px - less rounded */
+            border: 1px solid #3f3f46; /* Zinc 700 border */
+            transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+            display: inline-block;
+            font-size: 0.875rem; /* 14px */
+        }
+        .cta-button:hover {
+            background-color: #3f3f46; /* Zinc 700 */
+            border-color: #52525b; /* Zinc 600 */
+            transform: scale(1.02);
+        }
+        .cta-button-primary { /* For more prominent CTAs if needed */
+            background-color: #0071e3; /* Retain Apple blue for very specific primary CTAs */
+            color: white;
+            font-weight: 500;
+            padding: 0.625rem 1.25rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            display: inline-block;
+            font-size: 0.875rem;
+        }
+        .cta-button-primary:hover {
+            background-color: #0077ed;
+            transform: scale(1.02);
+        }
+        .card-style {
+            background-color: #18181b; /* Zinc 900 - very dark gray for cards */
+            border: 1px solid #27272a; /* Zinc 800 border */
+            border-radius: 0.75rem; /* 12px */
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+        .card-style:hover {
+            border-color: #3f3f46; /* Zinc 700 on hover */
+            transform: translateY(-3px);
+        }
+        h1, h2, h3, h4 { /* Consistent heading colors */
+             font-family: 'Inter', 'Noto Sans JP', sans-serif;
+             color: #F9FAFB; /* gray-50 for main headings */
+        }
+        .text-content {
+            color: #A1A1AA; /* Zinc 400 for paragraph text - slightly lighter */
+        }
+        .text-content-strong {
+             color: #D4D4D8; /* Zinc 300 for strong text */
+        }
+        .nav-link {
+            font-size: 0.8125rem; /* 13px, Apple-like nav link size */
+            font-weight: 400; /* Regular weight */
+            color: #A1A1AA; /* Zinc 400 */
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #E4E4E7; /* Zinc 200 */
+        }
+        .subtle-divider {
+            border-color: #27272a; /* Zinc 800 */
+        }
+    </style>
+</head>
+<body class="bg-black">
+
+    <header class="bg-black/70 backdrop-blur-lg shadow-2xl sticky top-0 z-50 border-b subtle-divider">
+        <nav class="container mx-auto px-6 py-3.5 flex justify-between items-center">
+            <a href="#" class="text-xl font-semibold text-gray-100">Keyball Pro</a>
+            <div class="space-x-7">
+                <a href="#concept" class="nav-link">コンセプト</a>
+                <a href="#features" class="nav-link">特長</a>
+                <a href="#gallery" class="nav-link">ギャラリー</a>
+                <a href="#roadmap" class="nav-link">ロードマップ</a>
+                <a href="#contact" class="nav-link">コミュニティ</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero-bg text-white py-28 md:py-44">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-[3.2rem] font-semibold mb-5 leading-tight">素材と設計で至高の打鍵体験を。</h1>
+            <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto text-gray-300 font-light">
+                少数生産だからこそ実現できる品質と、革新的なOリングガスケットマウントを採用した Keyball向けカスタム金属ケース「Keyball Pro」。
+            </p>
+            <a href="#features" class="cta-button-primary text-base px-6 py-2.5">詳しく見る</a>
+        </div>
+    </section>
+
+    <section id="concept" class="py-20 md:py-28 bg-zinc-950">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-semibold text-center mb-16 section-title">コンセプト：素材の探求</h2>
+            <div class="max-w-3xl mx-auto text-lg space-y-8 leading-relaxed">
+                <p class="text-content">PCの周辺機器において、材質そのものに深く焦点を当てた製品はまだ少ないと感じています。「Keyball Pro」は、そのギャップを埋めるべく、少数生産・フラッグシップ路線だからこそ可能な、マテリアルの持つ本質的な魅力を最大限に引き出すことを目指して開発されています。</p>
+                <p class="text-content">手にした瞬間にわかる質感、細部にまでこだわった加工、そして打鍵感の向上。美しい金属加工品の世界。</p>
+                <div class="p-8 bg-zinc-900 rounded-xl border subtle-divider mt-10">
+                    <h3 class="text-2xl font-semibold text-gray-100 mb-4">2つのグレード展開</h3>
+                    <p class="text-content"><strong class="font-medium text-content-strong">ミドルグレード：</strong> 高品質な金属素材を使用し、優れた基本性能とデザイン性を両立。</p>
+                    <p class="text-content mt-3"><strong class="font-medium text-content-strong">フラグシップモデル：</strong> 日本の中小企業が持つ貴重な技術や、珍しい特殊加工法を積極的に採用。唯一無二の付加価値と所有する喜びを提供します。(開発予定)</p>
+                </div>
+                <p class="text-center font-medium text-xl mt-12 text-gray-300">MateriAll製の金属製品は、全て製法にこだわっています。<br>ゼロから削り出されるCNC加工や、アルマイト処理を施さないサンドブラスト加工。手に取ると、金属が本来持っている質感が伝わってくるはずです。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-20 md:py-28 bg-black">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-semibold text-center mb-20 section-title">主な特長</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card-style p-8">
+                    <div class="flex justify-center">
+                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-center mb-2.5 text-gray-100">ガスケット</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed font-light">カスタム可能なガスケットを巧みに組み合わせた独自のガスケット構造。ベゼル幅を極限まで薄くしつつ、心地よい打鍵感を実現。ガスケット材の交換やカスタマイズも容易です。</p>
+                </div>
+                <div class="card-style p-8">
+                     <div class="flex justify-center">
+                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 018.25 20.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-center mb-2.5 text-gray-100">素材とデザイン</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed font-light">厳選された金属素材を使用し、その質感を最大限に活かすデザインを追求。タフな印象と洗練さを両立し、アタッチメントホールも装備。確かな存在感を放ちます。</p>
+                </div>
+                <div class="card-style p-8">
+                    <div class="flex justify-center">
+                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.531V19.94a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.506-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.395C2.806 8.757 3.63 8.25 4.51 8.25H6.75z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-center mb-2.5 text-gray-100">打鍵感</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed font-light">ケース内部の空洞を極力削減し、不要な反響音を抑制。ガスケットマウントとの相乗効果で、クリアでソリッドな打鍵感を提供します。快適なタイピング体験を。</p>
+                </div>
+                <div class="card-style p-8">
+                    <div class="flex justify-center">
+                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774a1.125 1.125 0 01.12 1.45l-.527.737c-.25.35-.272.806-.108 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.11v1.093c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738a1.125 1.125 0 01-.12 1.45l-.773.773a1.125 1.125 0 01-1.45.12l-.737-.527c-.35-.25-.806-.272-1.205-.107-.397.165-.71.505-.78.93l-.15.894c-.09.542-.56.94-1.11.94h-1.093c-.55 0-1.02-.398-1.11-.94l-.149-.894c-.07-.424-.384-.764-.78-.93-.398-.164-.855.142-1.205.108l-.737.527a1.125 1.125 0 01-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.506-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.11v-1.093c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.764-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.205.107.397-.165.71-.505.78-.93l.15-.894z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-center mb-2.5 text-gray-100">OLEDカバー (予定)</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed font-light">OLEDディスプレイ部分のカバーは、後から交換可能なアタッチメント式を採用予定。様々な素材やデザインで自分だけのスタイルを。</p>
+                </div>
+                <div class="card-style p-8">
+                    <div class="flex justify-center">
+                         <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                         </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-center mb-2.5 text-gray-100">カスタマイズ</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed font-light">打鍵感に関連する部分をユーザーの好みに合うように交換が容易な設計にしました。独自規格のガスケットではないため、市販のガスケットを使用でき、自分だけの打鍵感を追求できます。また、底面に敷ける消音シート等のパーツも用意。好みに合わせてカスタマイズしましょう。
+                    </p>
+                </div>
+                <div class="card-style p-8">
+                     <div class="flex justify-center">
+                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-center mb-2.5 text-gray-100">デザイン</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed font-light">「Keyball」にジャストフィットするよう精密に設計。純正の使い勝手を損なうことなく、新たな次元の所有感とタイピング体験を提供します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-20 md:py-28 bg-zinc-950">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-semibold text-center mb-16 section-title">ギャラリー</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="rounded-lg overflow-hidden aspect-video bg-zinc-800">
+                    <img src="https://placehold.co/600x400/18181b/A1A1AA?text=製品全体像" alt="Keyball Pro 製品全体像のイメージ" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/18181b/A1A1AA?text=画像読込エラー';">
+                </div>
+                <div class="rounded-lg overflow-hidden aspect-video bg-zinc-800">
+                    <img src="https://placehold.co/600x400/18181b/A1A1AA?text=Oリングガスケット部" alt="Oリングガスケット部分のアップイメージ" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/18181b/A1A1AA?text=画像読込エラー';">
+                </div>
+                <div class="rounded-lg overflow-hidden aspect-video bg-zinc-800">
+                    <img src="https://placehold.co/600x400/18181b/A1A1AA?text=側面アタッチメント" alt="側面アタッチメントホールのイメージ" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/18181b/A1A1AA?text=画像読込エラー';">
+                </div>
+                <div class="rounded-lg overflow-hidden aspect-video bg-zinc-800">
+                    <img src="https://placehold.co/600x400/18181b/A1A1AA?text=Promicroカバー" alt="Promicroカバー部分のイメージ" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/18181b/A1A1AA?text=画像読込エラー';">
+                </div>
+                <div class="rounded-lg overflow-hidden aspect-video bg-zinc-800">
+                    <img src="https://placehold.co/600x400/18181b/A1A1AA?text=使用イメージ1" alt="キーボード使用イメージ1" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/18181b/A1A1AA?text=画像読込エラー';">
+                </div>
+                <div class="rounded-lg overflow-hidden aspect-video bg-zinc-800">
+                    <img src="https://placehold.co/600x400/18181b/A1A1AA?text=使用イメージ2" alt="キーボード使用イメージ2" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/18181b/A1A1AA?text=画像読込エラー';">
+                </div>
+            </div>
+            <p class="text-center mt-10 text-gray-500 text-xs font-light">※上記はイメージ画像です。実際の製品とは異なる場合があります。</p>
+        </div>
+    </section>
+
+    <section id="roadmap" class="py-20 md:py-28 bg-black">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-semibold text-center mb-20 section-title">ロードマップ</h2>
+            <div class="max-w-2xl mx-auto relative">
+                <div class="timeline-item relative pl-8 pb-10">
+                    <h3 class="text-lg font-semibold mb-1 text-gray-200">2025年6月5日</h3>
+                    <p class="text-gray-400 leading-relaxed font-light text-sm">試作品完成、コミュニティにて発表。3Dモデル試作頒布開始。</p>
+                </div>
+                <div class="timeline-item relative pl-8 pb-10">
+                    <h3 class="text-lg font-semibold mb-1 text-gray-200">2025年6月10日</h3>
+                    <p class="text-gray-400 leading-relaxed font-light text-sm">レビュー収集と分析、改良作業に着手。</p>
+                </div>
+                <div class="timeline-item relative pl-8 pb-10">
+                    <h3 class="text-lg font-semibold mb-1 text-gray-200">2025年6月15日</h3>
+                    <p class="text-gray-400 leading-relaxed font-light text-sm">改良版 (V2) を再度頒布、フィードバック収集。</p>
+                </div>
+                <div class="timeline-item relative pl-8">
+                    <h3 class="text-lg font-semibold mb-1 text-gray-200">2025年6月20日</h3>
+                    <p class="text-gray-400 leading-relaxed font-light text-sm">完成版ミドルグレードのCNC業者への委託準備開始。受注生産受付開始。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 md:py-28 bg-zinc-950">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-semibold mb-8 text-white">コミュニティと最新情報</h2>
+            <p class="text-lg mb-10 max-w-xl mx-auto text-gray-300 leading-relaxed font-light">
+                開発の進捗や最新情報は、コミュニティ (例: Discordサーバー) で発信予定です。ぜひご参加ください。ご意見やご要望もお待ちしております。
+            </p>
+            <div class="space-y-4 sm:space-y-0 sm:flex sm:justify-center sm:space-x-3">
+                <a href="#" class="cta-button-primary text-sm px-5 py-2.5">コミュニティに参加 (準備中)</a>
+                <a href="mailto:info@materiall.example.com" class="cta-button text-sm px-5 py-2.5">お問い合わせ</a>
+            </div>
+             <p class="mt-10 text-xs text-gray-600 font-light">※上記リンク先は仮のものです。</p>
+        </div>
+    </section>
+
+    <footer class="bg-black text-gray-600 py-10 text-center border-t subtle-divider">
+        <p class="text-xs font-light">&copy; 2025 MateriAll. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
