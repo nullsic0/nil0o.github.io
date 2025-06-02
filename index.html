@@ -17,41 +17,20 @@
             overflow-x: hidden;
         }
 
-        /* Scroll Indicator */
-        #scroll-progress-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px; /* 細めのバー */
-            z-index: 100; /* ヘッダーより手前 */
-            background-color: transparent; /* 通常時は透明 */
-        }
-        #scroll-progress-bar {
-            height: 100%;
-            background-color: #0071e3; /* Apple Blue */
-            width: 0%;
-            transition: width 0.1s ease-out; /* 少しスムーズに */
-            box-shadow: 0 0 10px #0071e3, 0 0 5px #0071e3;
-        }
-
         .hero-bg {
             background-image: linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.65)), url('https://placehold.co/1920x1080/000000/E5E7EB?text=洗練された金属ケースのイメージ');
             background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Parallax effect - Note: can have issues on some mobile browsers */
-        }
-        @media (max-width: 768px) { /* Mobile devices might not support background-attachment: fixed well */
-            .hero-bg {
-                background-attachment: scroll;
-            }
+            /* background-position: center center; */ /* Initial position set by JS or center X and initial Y by JS */
+            /* background-attachment: fixed; Removed to implement JS parallax */
+            position: relative; /* Needed if we add pseudo elements for overlay, not strictly for this JS parallax */
+            overflow: hidden; /* Ensures no pseudo-elements or oddities escape */
         }
 
         .section-title {
             font-family: 'Noto Sans JP', 'Inter', sans-serif;
             font-weight: 600;
             color: #F9FAFB;
-            letter-spacing: 0.025em; /* Slightly increased letter spacing */
+            letter-spacing: 0.025em;
         }
 
         .feature-icon {
@@ -59,19 +38,16 @@
             height: 2.25rem;
             margin-bottom: 1rem;
             color: #9CA3AF;
-            transition: transform 0.4s ease, color 0.4s ease; /* Transition for icon animation */
+            transition: transform 0.4s ease, color 0.4s ease;
         }
 
-        /* Enhanced icon animation on card hover */
         .card-style:hover .feature-icon {
             transform: scale(1.15) rotate(5deg);
-            color: #E4E4E7; /* Brighter icon color on hover */
+            color: #E4E4E7;
         }
-        /* Icon animation when card becomes visible */
         .card-style.is-visible .feature-icon {
-            transform: scale(1) rotate(0deg); /* Initial state for animation */
+            transform: scale(1) rotate(0deg);
         }
-
 
         .timeline-item::before {
             content: '';
@@ -132,12 +108,12 @@
             border: 1px solid #27272a;
             border-radius: 0.75rem;
             transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden; /* To contain the glowing effect if needed */
+            overflow: hidden;
         }
         .card-style:hover {
-            border-color: #52525b; /* Brighter border */
-            transform: translateY(-6px) scale(1.01); /* Slightly more lift and scale */
-            box-shadow: 0 10px 20px rgba(0,0,0,0.25), 0 0 15px rgba(74, 74, 74, 0.3); /* Enhanced shadow + subtle glow */
+            border-color: #52525b;
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.25), 0 0 15px rgba(74, 74, 74, 0.3);
         }
         h1, h2, h3, h4 {
             font-family: 'Inter', 'Noto Sans JP', sans-serif;
@@ -163,14 +139,10 @@
         .subtle-divider {
             border-color: #27272a;
         }
-
-        /* Subtle gradient for Concept Section Background */
         .bg-concept {
-             background-color: #0A0A0A; /* Fallback */
-             background-image: radial-gradient(ellipse at top left, rgba(39, 39, 42, 0.5) 0%, #0A0A0A 70%); /* Zinc-950 is #0a0a0a, Zinc-800 is #27272a */
+             background-color: #0A0A0A;
+             background-image: radial-gradient(ellipse at top left, rgba(39, 39, 42, 0.5) 0%, #0A0A0A 70%);
         }
-
-        /* Animation Styles */
         .animate-on-scroll {
             opacity: 0;
             transform: translateY(30px);
@@ -212,22 +184,15 @@
         .hero-content.is-visible > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
         .hero-content.is-visible > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
         .hero-content.is-visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
-
-        /* Footer animation enhancement */
         footer.animate-on-scroll {
-            transform: translateY(50px); /* Start further down for slide-in */
+            transform: translateY(50px);
         }
         footer.animate-on-scroll.is-visible {
             transform: translateY(0);
         }
-
     </style>
 </head>
 <body class="bg-black">
-
-    <div id="scroll-progress-container">
-        <div id="scroll-progress-bar"></div>
-    </div>
 
     <header class="bg-black/70 backdrop-blur-lg shadow-2xl sticky top-0 z-50 border-b subtle-divider">
         <nav class="container mx-auto px-6 py-3.5 flex justify-between items-center">
@@ -236,26 +201,26 @@
     </header>
 
     <section class="hero-bg text-white py-28 md:py-44">
-        <div class="container mx-auto px-6 text-center">
-            <div class="hero-content">
+        <div class="container mx-auto px-6 text-center relative z-10"> <div class="hero-content">
                 <h1 class="text-4xl sm:text-5xl md:text-[3.2rem] font-semibold mb-5 leading-tight">素材と設計で至高の打鍵体験を。</h1>
                 <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto text-gray-300 font-light">
-                    新しくリングガスケットマウントを採用した Rosetta向けカスタムチタンケース「Rosetta Pro」。
+                    少数生産だからこそ実現できる品質と、革新的なOリングガスケットマウントを採用した Rosetta向けカスタム金属ケース「Rosetta Pro」。
                 </p>
                 <a href="#features" class="cta-button-primary text-base px-6 py-2.5">詳しく見る</a>
             </div>
         </div>
     </section>
 
-    <section id="concept" class="py-20 md:py-28 bg-concept"> <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-semibold text-center mb-16 section-title animate-on-scroll">素材の探求</h2>
+    <section id="concept" class="py-20 md:py-28 bg-concept">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-semibold text-center mb-16 section-title animate-on-scroll">コンセプト：素材の探求</h2>
             <div class="max-w-3xl mx-auto text-lg space-y-8 leading-relaxed">
                 <p class="text-content animate-on-scroll">PCの周辺機器において、材質そのものに深く焦点を当てた製品はまだ少ないと感じています。「Rosetta Pro」は、そのギャップを埋めるべく、少数生産・フラッグシップ路線だからこそ可能な、マテリアルの持つ本質的な魅力を最大限に引き出すことを目指して開発されています。</p>
                 <p class="text-content animate-on-scroll" style="transition-delay: 0.1s;">手にした瞬間にわかる質感、細部にまでこだわった加工、そして打鍵感の向上。美しい金属加工品の世界。</p>
                 <div class="p-8 bg-zinc-900 rounded-xl border subtle-divider mt-10 animate-on-scroll" style="transition-delay: 0.2s;">
-                    <h3 class="text-2xl font-semibold text-gray-100 mb-4">2つのグレードを展開</h3>
+                    <h3 class="text-2xl font-semibold text-gray-100 mb-4">2つのグレード展開</h3>
                     <p class="text-content"><strong class="font-medium text-content-strong">ミドルグレード：</strong> 高品質な金属素材を使用し、優れた基本性能とデザイン性を両立。</p>
-                    <p class="text-content mt-3"><strong class="font-medium text-content-strong">フラグシップ：</strong> 日本の中小企業が持つ貴重な技術や、珍しい特殊加工法を積極的に採用。唯一無二の付加価値と所有する喜びを提供します。(開発予定)</p>
+                    <p class="text-content mt-3"><strong class="font-medium text-content-strong">フラグシップモデル：</strong> 日本の中小企業が持つ貴重な技術や、珍しい特殊加工法を積極的に採用。唯一無二の付加価値と所有する喜びを提供します。(開発予定)</p>
                 </div>
                 <p class="text-center font-medium text-xl mt-12 text-gray-300 animate-on-scroll" style="transition-delay: 0.3s;">MateriAll製の金属製品は、全て製法にこだわっています。<br>ゼロから削り出されるCNC加工や、アルマイト処理を施さないサンドブラスト加工。手に取ると、金属が本来持っている質感が伝わってくるはずです。</p>
             </div>
@@ -275,7 +240,8 @@
                     <h3 class="text-lg font-semibold text-center mb-2.5 text-gray-100">ガスケット</h3>
                     <p class="text-gray-400 text-sm leading-relaxed font-light">カスタム可能なガスケットを巧みに組み合わせた独自のガスケット構造。ベゼル幅を極限まで薄くしつつ、心地よい打鍵感を実現。ガスケット材の交換やカスタマイズも容易です。</p>
                 </div>
-                <div class="card-style p-8" style="transition-delay: 0.1s;"> <div class="flex justify-center">
+                <div class="card-style p-8" style="transition-delay: 0.1s;">
+                    <div class="flex justify-center">
                         <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 018.25 20.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
                         </svg>
@@ -375,7 +341,8 @@
         </div>
     </section>
 
-    <section id="contact" class="py-20 md:py-28 bg-concept"> <div class="container mx-auto px-6 text-center">
+    <section id="contact" class="py-20 md:py-28 bg-concept">
+        <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-semibold mb-8 text-white animate-on-scroll">コミュニティと最新情報</h2>
             <p class="text-lg mb-10 max-w-xl mx-auto text-gray-300 leading-relaxed font-light animate-on-scroll" style="transition-delay: 0.1s;">
                 開発の進捗や最新情報は、コミュニティ (例: Discordサーバー) で発信予定です。ぜひご参加ください。ご意見やご要望もお待ちしております。
@@ -394,7 +361,7 @@
 
     <script>
         // Intersection Observer for scroll animations
-        const animatedElements = document.querySelectorAll('.animate-on-scroll, .animate-stagger, .gallery-image-container, .hero-content, .card-style'); // Added .card-style for icon animation trigger
+        const animatedElements = document.querySelectorAll('.animate-on-scroll, .animate-stagger, .gallery-image-container, .hero-content, .card-style');
 
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -407,18 +374,13 @@
 
                         children.forEach((child, i) => {
                             let childDelay = parseFloat(child.style.transitionDelay) || 0;
-                            if (childDelay === 0) { // Only apply if not explicitly set on child
-                                child.style.transitionDelay = `${baseDelay + i * 0.1}s`; // Adjusted stagger logic
+                            if (childDelay === 0) {
+                                child.style.transitionDelay = `${baseDelay + i * 0.1}s`;
                             }
                         });
                     }
-                    // For cards, their children (icons specifically) will animate via CSS transitions
-                    // based on the .is-visible class on the card itself.
-
-                    // Optional: Unobserve after animation
                     // observer.unobserve(entry.target); 
                 } else {
-                    // Optional: Remove 'is-visible' to replay animation
                     // entry.target.classList.remove('is-visible');
                 }
             });
@@ -428,28 +390,25 @@
 
         animatedElements.forEach(element => {
             observer.observe(element);
-             // Apply specific delays for staggered items like cards and timeline items if they have inline styles
-            if ((element.classList.contains('card-style') || element.classList.contains('timeline-item') || element.classList.contains('gallery-image-container')) && element.style.transitionDelay) {
-                // This delay is for the parent container. Child staggering is handled above or by direct CSS.
-            }
         });
 
-        // Scroll Progress Bar
-        const scrollProgressBar = document.getElementById('scroll-progress-bar');
-        function updateScrollProgress() {
-            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollPercentage = (scrollTop / scrollHeight) * 100;
-            if (scrollProgressBar) {
-                 scrollProgressBar.style.width = scrollPercentage + '%';
-            }
+        // Hero Background Parallax Effect
+        const heroBg = document.querySelector('.hero-bg');
+        if (heroBg) {
+            // Set initial background position
+            heroBg.style.backgroundPosition = `center 0px`;
+
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.pageYOffset;
+                // Adjust the '0.4' to control the speed of the parallax effect
+                // Smaller number = slower parallax (background moves less)
+                // Larger number (but < 1) = faster parallax (background moves more)
+                const parallaxSpeed = 0.4; 
+                heroBg.style.backgroundPositionY = (scrollPosition * parallaxSpeed) + 'px';
+            });
         }
-        window.addEventListener('scroll', updateScrollProgress);
-        // Initial call to set progress if page is already scrolled
-        updateScrollProgress();
 
     </script>
 
-<p>このページは優輝が気まぐれで作成しました。実際の製品情報とは一切関連がありませんが、今後発売する製品でこのコードを流用するかもしれません。あからさまにこのサイトと似てるな・・・って時は察してください。</p>
 </body>
 </html>
