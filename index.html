@@ -3,33 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rosetta Pro - カスタムキーボードケース</title>
+    <title>Tickles - カスタムキーボードケース</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* * ## スタイル変更のポイント ##
+         * - 全体を白基調（ライトモード）に変更。
+         * - Appleのサイトを参考に、背景は#f5f5f7、基本テキストは#1d1d1fに。
+         * - ボタンはオリジナルの角丸（0.5rem）を維持。
+         * - cta-buttonは白（ライトグレー）背景に青文字へ変更。
+         * - cta-button-primaryはアクセントとして青背景・白文字を維持。
+         * - その他、カードや区切り線などもライトモードに合わせて調整。
+        */
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            color: #E5E7EB;
-            background-color: #000000;
+            color: #333; /* ダークグレーの基本テキスト色 */
+            background-color: #f5f5f7; /* Appleサイト風のオフホワイト */
             overflow-x: hidden;
         }
 
         .hero-bg {
-            background-image: linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.65)), url('https://placehold.co/1920x1080/000000/E5E7EB?text=洗練された金属ケースのイメージ');
+            /* ライトテーマに合わせて背景を調整 */
+            background-image: linear-gradient(to right, rgba(245,245,247,0.85), rgba(245,245,247,0.65)), url('https://placehold.co/1920x1080/f5f5f7/333333?text=Tickles');
             background-size: cover;
-            /* background-position: center center; */ /* Initial position set by JS or center X and initial Y by JS */
-            /* background-attachment: fixed; Removed to implement JS parallax */
-            position: relative; /* Needed if we add pseudo elements for overlay, not strictly for this JS parallax */
-            overflow: hidden; /* Ensures no pseudo-elements or oddities escape */
+            position: relative;
+            overflow: hidden;
         }
 
         .section-title {
             font-family: 'Noto Sans JP', 'Inter', sans-serif;
             font-weight: 600;
-            color: #F9FAFB;
+            color: #1d1d1f; /* ダークな見出し色 */
             letter-spacing: 0.025em;
         }
 
@@ -37,18 +44,19 @@
             width: 2.25rem;
             height: 2.25rem;
             margin-bottom: 1rem;
-            color: #9CA3AF;
+            color: #888;
             transition: transform 0.4s ease, color 0.4s ease;
         }
 
         .card-style:hover .feature-icon {
             transform: scale(1.15) rotate(5deg);
-            color: #E4E4E7;
+            color: #0071e3;
         }
         .card-style.is-visible .feature-icon {
             transform: scale(1) rotate(0deg);
         }
 
+        /* --- タイムライン（ライトモード用） --- */
         .timeline-item::before {
             content: '';
             position: absolute;
@@ -57,8 +65,8 @@
             width: 1rem;
             height: 1rem;
             border-radius: 50%;
-            background-color: #4B5563;
-            border: 3px solid #111827;
+            background-color: #0071e3; /* アクセントカラー */
+            border: 3px solid #f5f5f7;
         }
         .timeline-item:not(:last-child)::after {
             content: '';
@@ -67,82 +75,90 @@
             top: 1.5rem;
             bottom: -1rem;
             width: 2px;
-            background-color: #374151;
+            background-color: #d2d2d7; /* 薄いグレーのライン */
         }
+        
+        /* --- セカンダリボタン（白） --- */
         .cta-button {
-            background-color: #27272a;
-            color: #e4e4e7;
+            background-color: #e8e8ed;
+            color: #0071e3;
             font-weight: 500;
             padding: 0.625rem 1.25rem;
-            border-radius: 0.5rem;
-            border: 1px solid #3f3f46;
-            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 0.5rem; /* オリジナルの形状を維持 */
+            border: 1px solid transparent;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
             display: inline-block;
             font-size: 0.875rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         .cta-button:hover {
-            background-color: #3f3f46;
-            border-color: #52525b;
+            background-color: #dcdce1;
             transform: scale(1.03) translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
+
+        /* --- プライマリボタン（青） --- */
         .cta-button-primary {
             background-color: #0071e3;
             color: white;
             font-weight: 500;
             padding: 0.625rem 1.25rem;
-            border-radius: 0.5rem;
+            border-radius: 0.5rem; /* オリジナルの形状を維持 */
             transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
             display: inline-block;
             font-size: 0.875rem;
-            box-shadow: 0 2px 4px rgba(0, 113, 227, 0.3);
+            box-shadow: 0 2px 4px rgba(0, 113, 227, 0.2);
         }
         .cta-button-primary:hover {
             background-color: #0077ed;
             transform: scale(1.03) translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0, 113, 227, 0.4);
+            box-shadow: 0 4px 8px rgba(0, 113, 227, 0.3);
         }
+
+        /* --- カード（ライトモード用） --- */
         .card-style {
-            background-color: #18181b;
-            border: 1px solid #27272a;
+            background-color: #ffffff;
+            border: 1px solid #d2d2d7;
             border-radius: 0.75rem;
             transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
             overflow: hidden;
         }
         .card-style:hover {
-            border-color: #52525b;
-            transform: translateY(-6px) scale(1.01);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.25), 0 0 15px rgba(74, 74, 74, 0.3);
+            border-color: #c0c0c5;
+            transform: translateY(-6px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
         }
+
         h1, h2, h3, h4 {
             font-family: 'Inter', 'Noto Sans JP', sans-serif;
-            color: #F9FAFB;
+            color: #1d1d1f;
         }
+
         .text-content {
-            color: #A1A1AA;
+            color: #515154;
         }
         .text-content-strong {
-            color: #D4D4D8;
+            color: #1d1d1f;
         }
+        
         .nav-link {
             font-size: 0.8125rem;
             font-weight: 400;
-            color: #A1A1AA;
+            color: #515154;
             transition: color 0.2s ease, transform 0.2s ease;
             display: inline-block;
         }
         .nav-link:hover {
-            color: #E4E4E7;
+            color: #0071e3;
             transform: scale(1.05);
         }
+
         .subtle-divider {
-            border-color: #27272a;
+            border-color: #d2d2d7; /* 薄いグレーの区切り線 */
         }
         .bg-concept {
-             background-color: #0A0A0A;
-             background-image: radial-gradient(ellipse at top left, rgba(39, 39, 42, 0.5) 0%, #0A0A0A 70%);
+           background-color: #ffffff;
         }
+        
+        /* スクロールアニメーションはオリジナルを保持 */
         .animate-on-scroll {
             opacity: 0;
             transform: translateY(30px);
@@ -192,42 +208,47 @@
         }
     </style>
 </head>
-<body class="bg-black">
+<body class="bg-gray-50">
 
-    <header class="bg-black/70 backdrop-blur-lg shadow-2xl sticky top-0 z-50 border-b subtle-divider">
+    <!-- ヘッダー: ライトモード対応 -->
+    <header class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50 border-b subtle-divider">
         <nav class="container mx-auto px-6 py-3.5 flex justify-between items-center">
-            <a href="#" class="text-xl font-semibold text-gray-100 nav-link">Rosetta Pro</a>
+            <a href="#" class="text-xl font-semibold text-gray-800 nav-link">Tickles</a>
         </nav>
     </header>
 
-    <section class="hero-bg text-white py-28 md:py-44">
-        <div class="container mx-auto px-6 text-center relative z-10"> <div class="hero-content">
+    <!-- ヒーローセクション: テキスト色を調整 -->
+    <section class="hero-bg text-black py-28 md:py-44">
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="hero-content">
                 <h1 class="text-4xl sm:text-5xl md:text-[3.2rem] font-semibold mb-5 leading-tight">素材と設計で至高の打鍵体験を。</h1>
-                <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto text-gray-300 font-light">
-                    少数生産だからこそ実現できる品質と、革新的なOリングガスケットマウントを採用した Rosetta向けカスタム金属ケース「Rosetta Pro」。
+                <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto text-gray-700 font-light">
+                    少数生産だからこそ実現できる品質と、革新的なOリングガスケットマウントを採用した Rosetta向けカスタム金属ケース「Tickles」。
                 </p>
                 <a href="#features" class="cta-button-primary text-base px-6 py-2.5">詳しく見る</a>
             </div>
         </div>
     </section>
 
-    <section id="concept" class="py-20 md:py-28 bg-concept">
+    <!-- コンセプトセクション: 背景とテキスト色を調整 -->
+    <section id="concept" class="py-20 md:py-28 bg-white">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-semibold text-center mb-16 section-title animate-on-scroll">コンセプト：素材の探求</h2>
             <div class="max-w-3xl mx-auto text-lg space-y-8 leading-relaxed">
-                <p class="text-content animate-on-scroll">PCの周辺機器において、材質そのものに深く焦点を当てた製品はまだ少ないと感じています。「Rosetta Pro」は、そのギャップを埋めるべく、少数生産・フラッグシップ路線だからこそ可能な、マテリアルの持つ本質的な魅力を最大限に引き出すことを目指して開発されています。</p>
+                <p class="text-content animate-on-scroll">PCの周辺機器において、材質そのものに深く焦点を当てた製品はまだ少ないと感じています。「Tickles」は、そのギャップを埋めるべく、少数生産・フラッグシップ路線だからこそ可能な、マテリアルの持つ本質的な魅力を最大限に引き出すことを目指して開発されています。</p>
                 <p class="text-content animate-on-scroll" style="transition-delay: 0.1s;">手にした瞬間にわかる質感、細部にまでこだわった加工、そして打鍵感の向上。美しい金属加工品の世界。</p>
-                <div class="p-8 bg-zinc-900 rounded-xl border subtle-divider mt-10 animate-on-scroll" style="transition-delay: 0.2s;">
-                    <h3 class="text-2xl font-semibold text-gray-100 mb-4">2つのグレード展開</h3>
+                <div class="p-8 bg-gray-50 rounded-xl border subtle-divider mt-10 animate-on-scroll" style="transition-delay: 0.2s;">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">2つのグレード展開</h3>
                     <p class="text-content"><strong class="font-medium text-content-strong">ミドルグレード：</strong> 高品質な金属素材を使用し、優れた基本性能とデザイン性を両立。</p>
                     <p class="text-content mt-3"><strong class="font-medium text-content-strong">フラグシップモデル：</strong> 日本の中小企業が持つ貴重な技術や、珍しい特殊加工法を積極的に採用。唯一無二の付加価値と所有する喜びを提供します。(開発予定)</p>
                 </div>
-                <p class="text-center font-medium text-xl mt-12 text-gray-300 animate-on-scroll" style="transition-delay: 0.3s;">MateriAll製の金属製品は、全て製法にこだわっています。<br>ゼロから削り出されるCNC加工や、アルマイト処理を施さないサンドブラスト加工。手に取ると、金属が本来持っている質感が伝わってくるはずです。</p>
+                <p class="text-center font-medium text-xl mt-12 text-gray-800 animate-on-scroll" style="transition-delay: 0.3s;">MateriAll製の金属製品は、全て製法にこだわっています。<br>ゼロから削り出されるCNC加工や、アルマイト処理を施さないサンドブラスト加工。手に取ると、金属が本来持っている質感が伝わってくるはずです。</p>
             </div>
         </div>
     </section>
 
-    <section id="features" class="py-20 md:py-28 bg-black">
+    <!-- 特長セクション: 背景とテキスト色を調整 -->
+    <section id="features" class="py-20 md:py-28 bg-gray-50">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-semibold text-center mb-20 section-title animate-on-scroll">主な特長</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 animate-stagger">
@@ -237,26 +258,27 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold text-center mb-2.5 text-gray-100">ガスケット</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed font-light">カスタム可能なガスケットを巧みに組み合わせた独自のガスケット構造。ベゼル幅を極限まで薄くしつつ、心地よい打鍵感を実現。ガスケット材の交換やカスタマイズも容易です。</p>
+                    <h3 class="text-lg font-semibold text-center mb-2.5 text-gray-900">ガスケット</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-light">カスタム可能なガスケットを巧みに組み合わせた独自のガスケット構造。ベゼル幅を極限まで薄くしつつ、心地よい打鍵感を実現。ガスケット材の交換やカスタマイズも容易です。</p>
                 </div>
                 <div class="card-style p-8" style="transition-delay: 0.1s;">
                     <div class="flex justify-center">
-                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 018.25 20.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
-                        </svg>
+                         <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 018.25 20.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold text-center mb-2.5 text-gray-100">素材とデザイン</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed font-light">厳選された金属素材を使用し、その質感を最大限に活かすデザインを追求。タフな印象と洗練さを両立し、アタッチメントホールも装備。確かな存在感を放ちます。</p>
+                    <h3 class="text-lg font-semibold text-center mb-2.5 text-gray-900">素材とデザイン</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-light">厳選された金属素材を使用し、その質感を最大限に活かすデザインを追求。タフな印象と洗練さを両立し、アタッチメントホールも装備。確かな存在感を放ちます。</p>
                 </div>
-                <div class="card-style p-8" style="transition-delay: 0.2s;">
+                 <!-- 他のカードも同様に色を調整 ... -->
+                 <div class="card-style p-8" style="transition-delay: 0.2s;">
                     <div class="flex justify-center">
                         <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.531V19.94a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.506-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.395C2.806 8.757 3.63 8.25 4.51 8.25H6.75z" />
                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold text-center mb-2.5 text-gray-100">打鍵感</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed font-light">ケース内部の空洞を極力削減し、不要な反響音を抑制。ガスケットマウントとの相乗効果で、クリアでソリッドな打鍵感を提供します。快適なタイピング体験を。</p>
+                    <h3 class="text-lg font-semibold text-center mb-2.5 text-gray-900">打鍵感</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-light">ケース内部の空洞を極力削減し、不要な反響音を抑制。ガスケットマウントとの相乗効果で、クリアでソリッドな打鍵感を提供します。快適なタイピング体験を。</p>
                 </div>
                 <div class="card-style p-8" style="transition-delay: 0.3s;">
                     <div class="flex justify-center">
@@ -265,8 +287,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold text-center mb-2.5 text-gray-100">OLEDカバー (予定)</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed font-light">OLEDディスプレイ部分のカバーは、後から交換可能なアタッチメント式を採用予定。様々な素材やデザインで自分だけのスタイルを。</p>
+                    <h3 class="text-lg font-semibold text-center mb-2.5 text-gray-900">OLEDカバー (予定)</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-light">OLEDディスプレイ部分のカバーは、後から交換可能なアタッチメント式を採用予定。様々な素材やデザインで自分だけのスタイルを。</p>
                 </div>
                 <div class="card-style p-8" style="transition-delay: 0.4s;">
                     <div class="flex justify-center">
@@ -274,95 +296,95 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold text-center mb-2.5 text-gray-100">カスタマイズ</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed font-light">打鍵感に関連する部分をユーザーの好みに合うように交換が容易な設計にしました。独自規格のガスケットではないため、市販のガスケットを使用でき、自分だけの打鍵感を追求できます。また、底面に敷ける消音シート等のパーツも用意。好みに合わせてカスタマイズしましょう。</p>
+                    <h3 class="text-lg font-semibold text-center mb-2.5 text-gray-900">カスタマイズ</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-light">打鍵感に関連する部分をユーザーの好みに合うように交換が容易な設計にしました。独自規格のガスケットではないため、市販のガスケットを使用でき、自分だけの打鍵感を追求できます。また、底面に敷ける消音シート等のパーツも用意。好みに合わせてカスタマイズしましょう。</p>
                 </div>
                 <div class="card-style p-8" style="transition-delay: 0.5s;">
                      <div class="flex justify-center">
-                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-semibold text-center mb-2.5 text-gray-100">デザイン</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed font-light">Rosettaにジャストフィットするよう精密に設計。純正の使い勝手を損なうことなく、新たな次元の所有感とタイピング体験を提供します。</p>
+                         <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                             <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
+                         </svg>
+                     </div>
+                    <h3 class="text-lg font-semibold text-center mb-2.5 text-gray-900">デザイン</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-light">Rosettaにジャストフィットするよう精密に設計。純正の使い勝手を損なうことなく、新たな次元の所有感とタイピング体験を提供します。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="gallery" class="py-20 md:py-28 bg-zinc-950">
+    <!-- ギャラリーセクション: 背景と画像プレースホルダーを調整 -->
+    <section id="gallery" class="py-20 md:py-28 bg-white">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-semibold text-center mb-16 section-title animate-on-scroll">ギャラリー</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="rounded-lg overflow-hidden aspect-video bg-zinc-800 gallery-image-container">
-                    <img src="https://placehold.co/600x400/18181b/A1A1AA?text=製品全体像" alt="Rosetta Pro 製品全体像のイメージ" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/18181b/A1A1AA?text=画像読込エラー';">
+                <div class="rounded-lg overflow-hidden aspect-video bg-gray-200 gallery-image-container">
+                    <img src="https://placehold.co/600x400/e5e7eb/333333?text=Tickles+製品全体像" alt="Tickles 製品全体像のイメージ" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e5e7eb/333333?text=画像読込エラー';">
                 </div>
-                <div class="rounded-lg overflow-hidden aspect-video bg-zinc-800 gallery-image-container" style="transition-delay: 0.1s;">
-                    <img src="https://placehold.co/600x400/18181b/A1A1AA?text=Oリングガスケット部" alt="Oリングガスケット部分のアップイメージ" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/18181b/A1A1AA?text=画像読込エラー';">
+                <div class="rounded-lg overflow-hidden aspect-video bg-gray-200 gallery-image-container" style="transition-delay: 0.1s;">
+                    <img src="https://placehold.co/600x400/e5e7eb/333333?text=Oリングガスケット部" alt="Oリングガスケット部分のアップイメージ" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e5e7eb/333333?text=画像読込エラー';">
                 </div>
-                <div class="rounded-lg overflow-hidden aspect-video bg-zinc-800 gallery-image-container" style="transition-delay: 0.2s;">
-                    <img src="https://placehold.co/600x400/18181b/A1A1AA?text=側面アタッチメント" alt="側面アタッチメントホールのイメージ" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/18181b/A1A1AA?text=画像読込エラー';">
+                <div class="rounded-lg overflow-hidden aspect-video bg-gray-200 gallery-image-container" style="transition-delay: 0.2s;">
+                    <img src="https://placehold.co/600x400/e5e7eb/333333?text=側面アタッチメント" alt="側面アタッチメントホールのイメージ" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e5e7eb/333333?text=画像読込エラー';">
                 </div>
-                <div class="rounded-lg overflow-hidden aspect-video bg-zinc-800 gallery-image-container" style="transition-delay: 0.3s;">
-                    <img src="https://placehold.co/600x400/18181b/A1A1AA?text=Promicroカバー" alt="Promicroカバー部分のイメージ" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/18181b/A1A1AA?text=画像読込エラー';">
+                <!-- 他の画像も同様に色を調整 -->
+                 <div class="rounded-lg overflow-hidden aspect-video bg-gray-200 gallery-image-container" style="transition-delay: 0.3s;">
+                    <img src="https://placehold.co/600x400/e5e7eb/333333?text=Promicroカバー" alt="Promicroカバー部分のイメージ" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e5e7eb/333333?text=画像読込エラー';">
                 </div>
-                <div class="rounded-lg overflow-hidden aspect-video bg-zinc-800 gallery-image-container" style="transition-delay: 0.4s;">
-                    <img src="https://placehold.co/600x400/18181b/A1A1AA?text=使用イメージ1" alt="キーボード使用イメージ1" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/18181b/A1A1AA?text=画像読込エラー';">
+                <div class="rounded-lg overflow-hidden aspect-video bg-gray-200 gallery-image-container" style="transition-delay: 0.4s;">
+                    <img src="https://placehold.co/600x400/e5e7eb/333333?text=使用イメージ1" alt="キーボード使用イメージ1" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e5e7eb/333333?text=画像読込エラー';">
                 </div>
-                <div class="rounded-lg overflow-hidden aspect-video bg-zinc-800 gallery-image-container" style="transition-delay: 0.5s;">
-                    <img src="https://placehold.co/600x400/18181b/A1A1AA?text=使用イメージ2" alt="キーボード使用イメージ2" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/18181b/A1A1AA?text=画像読込エラー';">
+                <div class="rounded-lg overflow-hidden aspect-video bg-gray-200 gallery-image-container" style="transition-delay: 0.5s;">
+                    <img src="https://placehold.co/600x400/e5e7eb/333333?text=使用イメージ2" alt="キーボード使用イメージ2" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e5e7eb/333333?text=画像読込エラー';">
                 </div>
             </div>
             <p class="text-center mt-10 text-gray-500 text-xs font-light animate-on-scroll">※上記はイメージ画像です。実際の製品とは異なる場合があります。</p>
         </div>
     </section>
-
-    <section id="roadmap" class="py-20 md:py-28 bg-black">
+    
+    <!-- ロードマップセクション: 背景とテキスト色を調整 -->
+    <section id="roadmap" class="py-20 md:py-28 bg-gray-50">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-semibold text-center mb-20 section-title animate-on-scroll">ロードマップ</h2>
             <div class="max-w-2xl mx-auto relative animate-stagger">
                 <div class="timeline-item relative pl-8 pb-10">
-                    <h3 class="text-lg font-semibold mb-1 text-gray-200">2025年6月5日</h3>
-                    <p class="text-gray-400 leading-relaxed font-light text-sm">試作品完成、コミュニティにて発表。3Dモデル試作頒布開始。</p>
+                    <h3 class="text-lg font-semibold mb-1 text-gray-800">2025年6月10日</h3>
+                    <p class="text-gray-600 leading-relaxed font-light text-sm">beta 3D test を開始。</p>
                 </div>
                 <div class="timeline-item relative pl-8 pb-10" style="transition-delay: 0.1s;">
-                    <h3 class="text-lg font-semibold mb-1 text-gray-200">2025年6月10日</h3>
-                    <p class="text-gray-400 leading-relaxed font-light text-sm">レビュー収集と分析、改良作業に着手。</p>
+                    <h3 class="text-lg font-semibold mb-1 text-gray-800">2025年6月20日</h3>
+                    <p class="text-gray-600 leading-relaxed font-light text-sm">beta 3D test 支援者よりレビューを収集し、Tickles Left beta 2.0 を支援者に配布。</p>
                 </div>
-                <div class="timeline-item relative pl-8 pb-10" style="transition-delay: 0.2s;">
-                    <h3 class="text-lg font-semibold mb-1 text-gray-200">2025年6月15日</h3>
-                    <p class="text-gray-400 leading-relaxed font-light text-sm">改良版 (V2) を再度頒布、フィードバック収集。</p>
-                </div>
-                <div class="timeline-item relative pl-8" style="transition-delay: 0.3s;">
-                    <h3 class="text-lg font-semibold mb-1 text-gray-200">2025年6月20日</h3>
-                    <p class="text-gray-400 leading-relaxed font-light text-sm">完成版ミドルグレードのCNC業者への委託準備開始。受注生産受付開始。</p>
+                <div class="timeline-item relative pl-8" style="transition-delay: 0.2s;">
+                    <h3 class="text-lg font-semibold mb-1 text-gray-800">2025年 7月以降</h3>
+                    <p class="text-gray-600 leading-relaxed font-light text-sm">Tickles 完成品を販売開始。完成版アルミケースの発注開始。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-20 md:py-28 bg-concept">
+    <!-- コンタクトセクション: 背景とテキスト色、ボタンを調整 -->
+    <section id="contact" class="py-20 md:py-28 bg-white">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-4xl font-semibold mb-8 text-white animate-on-scroll">コミュニティと最新情報</h2>
-            <p class="text-lg mb-10 max-w-xl mx-auto text-gray-300 leading-relaxed font-light animate-on-scroll" style="transition-delay: 0.1s;">
+            <h2 class="text-3xl md:text-4xl font-semibold mb-8 text-black animate-on-scroll">コミュニティと最新情報</h2>
+            <p class="text-lg mb-10 max-w-xl mx-auto text-gray-700 leading-relaxed font-light animate-on-scroll" style="transition-delay: 0.1s;">
                 開発の進捗や最新情報は、コミュニティ (例: Discordサーバー) で発信予定です。ぜひご参加ください。ご意見やご要望もお待ちしております。
             </p>
             <div class="space-y-4 sm:space-y-0 sm:flex sm:justify-center sm:space-x-3 animate-on-scroll" style="transition-delay: 0.2s;">
                 <a href="#" class="cta-button-primary text-sm px-5 py-2.5">コミュニティに参加 (準備中)</a>
                 <a href="mailto:info@materiall.example.com" class="cta-button text-sm px-5 py-2.5">お問い合わせ</a>
             </div>
-            <p class="mt-10 text-xs text-gray-600 font-light animate-on-scroll" style="transition-delay: 0.3s;">※上記リンク先は仮のものです。</p>
+            <p class="mt-10 text-xs text-gray-500 font-light animate-on-scroll" style="transition-delay: 0.3s;">※上記リンク先は仮のものです。</p>
         </div>
     </section>
 
-    <footer class="bg-black text-gray-600 py-10 text-center border-t subtle-divider animate-on-scroll">
+    <!-- フッター: ライトモード対応 -->
+    <footer class="bg-gray-50 text-gray-500 py-10 text-center border-t subtle-divider animate-on-scroll">
         <p class="text-xs font-light">&copy; 2025 MateriAll. All Rights Reserved.</p>
     </footer>
 
     <script>
-        // Intersection Observer for scroll animations
+        // スクリプトはオリジナルを保持
         const animatedElements = document.querySelectorAll('.animate-on-scroll, .animate-stagger, .gallery-image-container, .hero-content, .card-style');
-
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -371,7 +393,6 @@
                     if (entry.target.classList.contains('animate-stagger') || entry.target.classList.contains('hero-content')) {
                         const children = Array.from(entry.target.children);
                         let baseDelay = parseFloat(entry.target.style.transitionDelay) || 0;
-
                         children.forEach((child, i) => {
                             let childDelay = parseFloat(child.style.transitionDelay) || 0;
                             if (childDelay === 0) {
@@ -379,35 +400,23 @@
                             }
                         });
                     }
-                    // observer.unobserve(entry.target); 
-                } else {
-                    // entry.target.classList.remove('is-visible');
                 }
             });
         }, {
             threshold: 0.1,
         });
-
         animatedElements.forEach(element => {
             observer.observe(element);
         });
-
-        // Hero Background Parallax Effect
         const heroBg = document.querySelector('.hero-bg');
         if (heroBg) {
-            // Set initial background position
             heroBg.style.backgroundPosition = `center 0px`;
-
             window.addEventListener('scroll', function() {
                 const scrollPosition = window.pageYOffset;
-                // Adjust the '0.4' to control the speed of the parallax effect
-                // Smaller number = slower parallax (background moves less)
-                // Larger number (but < 1) = faster parallax (background moves more)
                 const parallaxSpeed = 0.4; 
                 heroBg.style.backgroundPositionY = (scrollPosition * parallaxSpeed) + 'px';
             });
         }
-
     </script>
 
 </body>
